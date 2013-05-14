@@ -28,5 +28,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'pry'
 
   s.extra_rdoc_files = ['README.md', 'LICENSE']
+  s.executables  = ['ghrh']
   s.license = 'MIT'
 end
