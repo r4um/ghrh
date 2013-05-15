@@ -15,11 +15,7 @@ module GHRH
 
         res = GHRH::Client.get("/repos/#{repo}/hooks/#{id}")
 
-        if not res['name']
-          puts "Invalid hook ID #{id}"
-          puts res
-          exit 1
-        end
+        raise "Invalid hook ID #{id}" if not res['name']
 
         name = res['name']
         hook = hooks[name]
@@ -39,7 +35,7 @@ module GHRH
         # make sure config settings given exist in the schema
         config_list.each do |arg|
           k,v = arg.split(/=/,2)
-          raise "Invalid setting #{k} for hook #{name}" if not schema[k]
+          raise "Invalid setting #{k} for hook #{id} (#{name})" if not schema.include? k
           config[k]=v
         end
 
@@ -48,7 +44,7 @@ module GHRH
         if events
           events_list = events.split(/,/)
           events_list.each do |event|
-            raise "Invalid event #{event} for hook #{id}" if not supported_events.index(event)
+            raise "Invalid event #{event} for hook #{id} (#{name})" if not supported_events.include? event
           end
         end
 

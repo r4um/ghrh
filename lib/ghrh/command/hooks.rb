@@ -5,10 +5,7 @@ module GHRH
       option "--refresh", :flag, "Refresh hooks cache"
 
       def execute
-        if refresh?
-          GHRH::Config.fetch_hooks
-          exit 0
-        end
+        GHRH::Config.fetch_hooks if refresh?
 
         hooks = GHRH::Config.hooks
 
