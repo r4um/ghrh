@@ -120,7 +120,7 @@ $ ghrh get -r r4um/dotfiles 954777
  "last_response"=>{"code"=>200, "status"=>"ok", "message"=>"OK"},
  "updated_at"=>"2013-05-14T12:19:30Z",
  "created_at"=>"2013-05-13T19:52:50Z"}
-$ ghrh test -t r4um/dotfiles 954777
+$ ghrh test -r r4um/dotfiles 954777
 204 No Content
 nil
 $ ghrh delete -r r4um/dotfiles 954777
